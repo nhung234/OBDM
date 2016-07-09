@@ -1,6 +1,45 @@
 import serial
 import os.path
 
+def main()
+     serialIO=init()
+     while True :
+       	r_rpm = rpm(serialIO)
+       	r_ect = ect(serialIO)
+       	r_eot = eot(serialIO)
+	r_speed = speed(serialIO)
+	r_volt = volt(serialIO)
+       	r_stf1 = stf1(serialIO)
+       	r_stf2 = stf2(serialIO)
+       	r_ltf1 = ltf1(serialIO)
+	r_ltf2 = ltf2(serialIO)
+	r_fp = fp(serialIO)
+   	r_tp = tp(serialIO)
+	r_oxy1 = oxy1(serialIO)
+	r_oxy2 = oxy2(serialIO)           
+	r_ta = ta(serialIO)           
+
+  	print "speed : " , r_speed , " km/h"
+	print "rpm : " , r_rpm
+	print "ect : " , r_ect , " C"
+	print "eot : " , r_eot , " C"
+	print "volt : ", r_volt , " V"
+ 	print "stf1 : " , r_stf1 , " %"
+	print "stf2 : " , r_stf2 , " %"
+	print "ltf1 : " , r_ltf1 , " %"
+	print "ltf2 : " , r_ltf2 , " %"
+	print "fp : ", r_fp , " KPa"
+	print "tp : " , r_tp , " %"
+	print "oxy1 : " , r_oxy1 , " ratio"
+	print "oxy2 : ", r_oxy2 , " ratio"
+	print "ta : ", r_ta , " TDC"
+
+def init():
+    try:
+      serialIO = serial.Serial("/dev/tty"+dev, 38400, timeout=1)
+      return serialIO
+    except:
+      print "Initialize Error!"
 
 def speed(serialIO):
     #time.sleep(0.01)
@@ -143,42 +182,8 @@ def ta(serialIO):
     except:
         return 0
 
-def init():
-    serialIO = serial.Serial("/dev/tty"+dev, 38400, timeout=1)
-    return serialIO
 
-def main()
-     serialIO=init()
-     while True :
-       	r_rpm = rpm(serialIO)
-       	r_ect = ect(serialIO)
-       	r_eot = eot(serialIO)
-	r_speed = speed(serialIO)
-	r_volt = volt(serialIO)
-       	r_stf1 = stf1(serialIO)
-       	r_stf2 = stf2(serialIO)
-       	r_ltf1 = ltf1(serialIO)
-	r_ltf2 = ltf2(serialIO)
-	r_fp = fp(serialIO)
-   	r_tp = tp(serialIO)
-	r_oxy1 = oxy1(serialIO)
-	r_oxy2 = oxy2(serialIO)           
-	r_ta = ta(serialIO)           
 
-  	print "speed : " , r_speed , " km/h"
-	print "rpm : " , r_rpm
-	print "ect : " , r_ect , " C"
-	print "eot : " , r_eot , " C"
-	print "volt : ", r_volt , " V"
- 	print "stf1 : " , r_stf1 , " %"
-	print "stf2 : " , r_stf2 , " %"
-	print "ltf1 : " , r_ltf1 , " %"
-	print "ltf2 : " , r_ltf2 , " %"
-	print "fp : ", r_fp , " KPa"
-	print "tp : " , r_tp , " %"
-	print "oxy1 : " , r_oxy1 , " ratio"
-	print "oxy2 : ", r_oxy2 , " ratio"
-	print "ta : ", r_ta , " TDC"
 
 
     
